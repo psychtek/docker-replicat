@@ -10,15 +10,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Docker Login 
     - uses: docker/login-action@v1
       with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{secrets.DOCKER_USER}}
+        password: ${{secrets.DOCKER_PASSWORD}}
           
-    - name: Build and Push
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
       with:
-          context: .
-          push: true
-          tags: psychtek/replicats:latest
+        context: ./
+        file: ./Dockerfile
+        push: true
+        tags: ${{secrets.DOCKER_USER}}/replicats:latest
+
+      - name: Image digest
