@@ -55,11 +55,6 @@ RUN apt-get -qq update && \
   zlib1g-dev \
   # pdf text library
   texlive \
-  texlive-latex-recommended \
-  texlive-fonts-recommended \
-  texlive-latex-extra \
-  texlive-fonts-extra \
-  texlive-lang-all \
   # Clean up
   && apt-get clean
 
@@ -88,11 +83,12 @@ RUN install2.r --error \
   tidybayes \
   usethis \
   GoFKernel \
-  patchwork \
   qualtRics \
   DescTools \
   rfUtilities \
+  KernSmooth \
   precrec \
+  nlme \
   covr \
   huxtable \
   here \
