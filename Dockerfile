@@ -106,7 +106,7 @@ RUN install2.r --error \
   # Tests
   pointblank \
   # latex library
-  tinytext
+  tinytex
   
   # Install tiny text
   RUN R -e "tinytex::install_tinytex()"
