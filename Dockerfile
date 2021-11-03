@@ -55,6 +55,8 @@ RUN apt-get -qq update && \
   zlib1g-dev \
   # pdf text library
   texlive \
+  # additional fonts
+  ttf-inconsolata \
   # Clean up
   && apt-get clean
 
@@ -102,4 +104,9 @@ RUN install2.r --error \
   sessioninfo \
   stringi \
   # Tests
-  pointblank
+  pointblank \
+  # latex library
+  tinytext
+  
+  # Install tiny text
+  RUN R -e "tinytex::install_tinytex()"
