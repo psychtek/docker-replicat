@@ -25,6 +25,9 @@ RUN apt-get -qq update && \
   libcairo2-dev \
   # svglite dependency
   libfontconfig1-dev \
+  libicu-dev \
+  make \
+  libgit2-dev \
   # Being able to use the `R` documentation
   less \
   git \
@@ -46,16 +49,25 @@ RUN apt-get -qq update && \
   libmagick++-dev \
   # Required for rjags
   jags \
+  r-cran-rjags \
   # Required for Rmpfr which we need for Bayes stuff
   libmpfr-dev \
   zlib1g-dev \
+  # pdf text library
+  texlive \
+  texlive-latex-recommended \
+  texlive-fonts-recommended \
+  texlive-latex-extra \
+  texlive-fonts-extra \
+  texlive-lang-all
+  # Clean up
   && apt-get clean
 
-# Install Visidata. Check https://github.com/saulpw/visidata/blob/stable/requirements.txt
+# install python libraries
 RUN pip3 install \
-  # dta (Stata)
+  # pandas
   pandas \
-  # http
+  # date util
   python-dateutil
 
 # Additional libraries
@@ -64,6 +76,7 @@ RUN install2.r --error \
   rjags \
   R2jags \
   mathjaxr \
+  coda \
   # Documentation
   roxygen2 \
   # For running tests
@@ -80,8 +93,16 @@ RUN install2.r --error \
   DescTools \
   rfUtilities \
   precrec \
+  covr \
+  huxtable \
+  here \
+  readr \
   # Warning messages
   cli \
   janitor \
+  readxl \
+  sass \
+  sessioninfo \
+  stringi \
   # Tests
   pointblank
