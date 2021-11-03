@@ -59,7 +59,7 @@ RUN apt-get -qq update && \
   texlive-fonts-recommended \
   texlive-latex-extra \
   texlive-fonts-extra \
-  texlive-lang-all
+  texlive-lang-all \
   # Clean up
   && apt-get clean
 
