@@ -55,7 +55,6 @@ RUN apt-get -qq update && \
   zlib1g-dev \
   # pdf text library
   texlive \
-  texlive-scripts \
   # Clean up
   && apt-get clean
 
