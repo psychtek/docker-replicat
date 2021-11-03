@@ -31,7 +31,7 @@ RUN apt-get -qq update && \
   # Being able to use the `R` documentation
   less \
   git \
-  # Shiny requirements
+  # pandoc requirements
   pandoc \
   pandoc-citeproc \
   sudo \
@@ -55,6 +55,7 @@ RUN apt-get -qq update && \
   zlib1g-dev \
   # pdf text library
   texlive \
+  texlive-scripts \
   # Clean up
   && apt-get clean
 
@@ -75,6 +76,7 @@ RUN install2.r --error \
   # Documentation
   roxygen2 \
   # For running tests
+  rcmdcheck \
   testthat \
   # Date formatting
   lubridate \
