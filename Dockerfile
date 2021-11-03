@@ -56,7 +56,7 @@ RUN apt-get -qq update && \
   # pdf text library
   texlive \
   # additional fonts
-  ttf-inconsolata \
+  fonts-inconsolata \
   # Clean up
   && apt-get clean
 
