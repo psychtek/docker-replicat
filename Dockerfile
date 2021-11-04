@@ -57,6 +57,7 @@ RUN apt-get -qq update && \
   texlive \
   # additional fonts
   fonts-inconsolata \
+  qpdf \
   # Clean up
   && apt-get clean
 
@@ -106,8 +107,9 @@ RUN install2.r --error \
   # Tests
   pointblank \
   # latex library
-  tinytex \ 
-  qpdf
-  
+  tinytex \
+  qpdf \
+  DT
+
   # Install tiny text
   RUN R -e "tinytex::install_tinytex()"
