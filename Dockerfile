@@ -1,115 +1,162 @@
-# ./Dockerfile
 
-FROM rocker/tidyverse:4.1.1
+FROM rocker/rstudio:4.1.1
 
-MAINTAINER Aaron Willcox <aaron.willcox@unimelb.edu.au>
+MAINTAINER Aaron Willcox "aaron.willcox@unimelb.edu.au"
 
+#RUN export PATH=/usr/lib/rstudio-server/bin:$PATH
+
+# installers
 RUN apt-get -qq update && \
-  # fix-broken: https://askubuntu.com/questions/1077298/depends-libnss3-23-26-but-23-21-1ubuntu4-is-to-be-installed
-  DEBIAN_FRONTEND=noninteractive apt-get -qy install -f \
-  python3-pip \
-  # X11 Window system
-  xorg \
-  openbox \
-  # enrichplot dependency
-  libglpk-dev \
-  # ggraph dependency (required for clusterProfiler)
-  libudunits2-dev \
-  # XML2 dependency (required for tidyverse)
-  libxml2-dev \
-  # httr dependency (required for tidyverse)
-  libssl-dev \
-  # curl dependency (required for tidyverse)
-  libcurl4-openssl-dev \
-  # svglite dependency (required for svg rmarkdown output)
-  libcairo2-dev \
-  # svglite dependency
-  libfontconfig1-dev \
-  libicu-dev \
-  make \
-  libgit2-dev \
-  # Being able to use the `R` documentation
-  less \
-  git \
-  # pandoc requirements
-  pandoc \
-  pandoc-citeproc \
-  sudo \
-  gdebi-core \
-  libxt-dev \
-  wget \
-  # Visidata requirements
-  man \
-  # Seurat requirements (Single Cell RNASeq package)
-  libhdf5-dev \
-  # Pigz for parallel gzip file reading and writing. See https://cloud.r-project.org/web/packages/vroom/vignettes/vroom.html and https://www.jimhester.com/post/2019-09-26-pipe-connections/
-  gsl-bin \
-  libgsl0-dev \
-  # Required for magick package
-  libmagick++-dev \
-  # Required for rjags
-  jags \
-  r-cran-rjags \
-  # Required for Rmpfr which we need for Bayes stuff
-  libmpfr-dev \
-  zlib1g-dev \
-  # pdf text library
-  texlive \
-  # additional fonts
-  fonts-inconsolata \
-  qpdf \
-  # Clean up
-  && apt-get clean
+    DEBIAN_FRONTEND=noninteractive apt-get -qy install -f \
+    gdal-bin \
+    lbzip2 \
+    libv8-dev \
+    libcairo2-dev \
+    libcurl4-openssl-dev \
+    libfontconfig1-dev \
+    libfftw3-dev \
+    libgdal-dev \
+    libgeos-dev \
+    libgit2-dev \
+    libicu-dev \
+    libgsl0-dev \
+    libglpk40 \
+    libglpk-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    libhdf4-alt-dev \
+    libhdf5-dev \
+    libjq-dev \
+    libmagick++-dev \
+    libmpfr-dev \
+    libpng-dev \
+    libpq-dev \
+    libproj-dev \
+    libprotobuf-dev \
+    libpython3-dev \
+    libxt-dev \
+    libnetcdf-dev \
+    libsqlite3-dev \
+    libudunits2-dev \
+    libxml2-dev \
+    libxt-dev \
+    gsl-bin \
+    jags \
+    r-cran-rjags \
+	  nano \
+    netcdf-bin \
+    openbox \
+    postgis \
+    protobuf-compiler \
+	  pandoc \
+    pandoc-citeproc \
+    python3-pip \
+    qpdf \
+    sqlite3 \
+    sudo \
+    texlive \
+    tk-dev \
+    unixodbc-dev \
+    xorg \
+    zlib1g-dev \
+    && apt-get clean
 
 # install python libraries
 RUN pip3 install \
-  # pandas
   pandas \
-  # date util
-  python-dateutil
+  python-dateutil \
+  requests
 
 # Additional libraries
-RUN install2.r --error \
-# Jags library
+RUN install2.r --error --skipinstalled \
+  DBI \
+  broom \
+  cli \
+  coda \
+  curl \
+  covr \
+  crayon \
+  credentials \
+  DescTools \
+  GoFKernel \
+  ggridges \
+  ggthemes \
+  glue \
+  gt \
+  gtable \
+  git2r \
+  googledrive \
+  googlesheets4 \
+  lubridate \
+  mathjaxr \
+  nlme \
+  osfr \
+  pointblank \
+  precrec \
+  qualtRics \
+  R6 \
+  RCurl \
+  reprex \
+  rlang \
+  readr \
+  readxl \
+  remotes \
+  reticulate \
+  rfUtilities \
   rjags \
   R2jags \
-  mathjaxr \
-  coda \
-  # Documentation
   roxygen2 \
-  # For running tests
   rcmdcheck \
-  testthat \
-  # Date formatting
+  rmarkdown \
+  rvest \
+  janitor \
+  jsonlite \
+  jsonvalidate \
+  kableExtra \
+  knitr \
   lubridate \
-  VGAM \
-  # Bays stuff
+  testthat \
+  tinytex \
   tidybayes \
+  tidytext \
   usethis \
-  GoFKernel \
-  qualtRics \
-  DescTools \
-  rfUtilities \
+  VGAM \
   KernSmooth \
-  precrec \
-  nlme \
-  covr \
+  haven \
   huxtable \
   here \
-  readr \
-  # Warning messages
-  cli \
-  janitor \
-  readxl \
+  httr \
   sass \
   sessioninfo \
+  scales \
   stringi \
-  # Tests
-  pointblank \
-  # latex library
-  tinytex \
+  stringr \
   qpdf \
-  DT
+  DT \
+  tidyverse \
+  XML \
+  R.utils \
+  dtplyr \
+  R.methodsS3 \
+  modelr \
+  arrow \
+  R.oo \
+  devtools \
+	log4r \
+  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
 
-  # Install tiny text
-  RUN R -e "tinytex::install_tinytex()"
+# Install tiny text
+RUN R -e "tinytex::install_tinytex()"
+
+# Install packages from github
+RUN R -e "remotes::install_github('jthomasmock/gtExtras')"
+
+# Install Pins version
+RUN R -e "remotes::install_version('pins', version = '0.4.5')"
+
+# Install rstatix - temp solution
+RUN R -e "install.packages('rstatix')"
+
+# Generate session info
+RUN R -e "reticulate::py_config()"
+
