@@ -157,18 +157,17 @@ RUN R -e "remotes::install_version('pins', version = '0.4.5')"
 
 # Set rstudio preferences 
 RUN R -e 'rstudio.prefs::use_rstudio_prefs( \
-  always_save_history = FALSE,
-  initial_working_directory = "~/CATnap",
-  load_workspace = TRUE,
-  save_workspace = "never",
-  rainbow_parentheses = TRUE,
-  editor_theme = "Chaos",
-  python_type = "system",
-  python_version = "3.8.10",
-  python_path = "/usr/bin/python3.8",
-  posix_terminal_shell = "bash",
-  terminal_renderer = "dom"
-)'
+  always_save_history = FALSE, \
+  initial_working_directory = "~/CATnap", \
+  load_workspace = TRUE, \
+  save_workspace = "never", \
+  rainbow_parentheses = TRUE, \
+  editor_theme = "Chaos", \
+  python_type = "system", \
+  python_version = "3.8.10", \
+  python_path = "/usr/bin/python3.8", \
+  posix_terminal_shell = "bash", \
+  terminal_renderer = "dom")'
 
 # Generate session info
 RUN R -e "reticulate::py_config()"
