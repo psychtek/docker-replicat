@@ -99,7 +99,10 @@ install2.r --error --skipinstalled -n "$NCPUS" \
     tidybayes \
     XML \
     DT \
-    tidymodels
+    tidymodels \
+    DescTools \
+    ggforce \
+    ggpubr
 
 
 # Clean up
