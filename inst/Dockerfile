@@ -4,9 +4,9 @@ LABEL org.opencontainers.image.authors="Aaron Willcox <aaron.willcox@unimelb.edu
 org.opencontainers.image.source="https://github.com/psychtek/docker-replicat"
 
 # install scripts port from: https://github.com/rocker-org/rocker-versioned2
-COPY /rocker_scripts/install_python.sh /tmp/
+COPY /inst/rocker_scripts/install_python.sh /tmp/
 
-COPY /rocker_scripts/install_pyenv.sh /tmp/
+COPY /inst/rocker_scripts/install_pyenv.sh /tmp/
 
 RUN chmod +x /tmp/install_python.sh
 
@@ -16,7 +16,7 @@ RUN /tmp/install_python.sh
 
 #RUN /tmp/install_pyenv.sh
 
-COPY /rocker_scripts/install_additional.sh /tmp/
+COPY /inst/rocker_scripts/install_additional.sh /tmp/
 
 RUN /tmp/install_additional.sh
 
