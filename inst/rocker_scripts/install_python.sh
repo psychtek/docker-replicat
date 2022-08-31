@@ -47,6 +47,9 @@ fi
 mkdir -p "${WORKON_HOME}"
 python3 -m venv "${PYTHON_VENV_PATH}"
 
+pip install pandas
+pip install numpy
+
 install2.r --error --skipinstalled -n "$NCPUS" reticulate
 
 ## Ensure RStudio inherits this env var

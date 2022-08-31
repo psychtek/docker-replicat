@@ -32,7 +32,8 @@ if [ "$ARCH" = "aarch64" ]; then
     CRAN=$CRAN_SOURCE
 fi
 
-### Additional base dependencies
+echo -e "Installing additional system dependencies...\n"
+### Additional base dependencies added here
 apt_install \
     curl \
     qpdf \
@@ -44,17 +45,19 @@ apt_install \
     r-cran-rjags \
     nano \
     netcdf-bin \
-    openbox \
     postgis \
     protobuf-compiler \
-    sqlite3
+    sqlite3 \
+    htop
 
+echo -e "Installing Remotes() to install non CRAN Packages...\n"
 # Remotes Installs
 Rscript -e "install.packages(c('remotes'), repos='${CRAN_SOURCE}')"
 Rscript -e "remotes::install_github('jthomasmock/gtExtras')"
 Rscript -e "remotes::install_version('pins', version = '0.4.5')"
 Rscript -e "remotes::install_github('mitchelloharawild/icons')"
 
+echo -e "Installing Additional R Packages...\n"
 # Additional R libraries
 install2.r --error --skipinstalled -n "$NCPUS" \
     sessioninfo \
@@ -116,8 +119,6 @@ r --version
 echo -e "Check the R info...\n"
 
 R -q -e "sessionInfo()"
-
-R -q -e "library(tidyverse)"
 
 R -q -e "reticulate::py_config()"
 
