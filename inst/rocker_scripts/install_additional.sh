@@ -105,7 +105,8 @@ install2.r --error --skipinstalled -n "$NCPUS" \
     tidymodels \
     DescTools \
     ggforce \
-    ggpubr
+    ggpubr \
+    formattable
 
 
 # Clean up
