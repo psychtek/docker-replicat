@@ -10,11 +10,7 @@ COPY /inst/rocker_scripts/install_pyenv.sh /tmp/
 
 RUN chmod +x /tmp/install_python.sh
 
-#RUN chmod +x /tmp/install_pyenv.sh
-
 RUN /tmp/install_python.sh
-
-#RUN /tmp/install_pyenv.sh
 
 COPY /inst/rocker_scripts/install_additional.sh /tmp/
 

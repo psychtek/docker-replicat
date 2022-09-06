@@ -106,7 +106,8 @@ install2.r --error --skipinstalled -n "$NCPUS" \
     DescTools \
     ggforce \
     ggpubr \
-    formattable
+    formattable \
+    R.rsp
 
 
 # Clean up
@@ -119,9 +120,9 @@ r --version
 
 echo -e "Check the R info...\n"
 
-R -q -e "sessionInfo()"
-
 R -q -e "reticulate::py_config()"
+
+R -q -e "rjags::jags.version()"
 
 R -q -e "sessioninfo::platform_info()"
 
