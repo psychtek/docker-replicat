@@ -16,11 +16,8 @@ COPY /inst/rocker_scripts/install_additional.sh /tmp/
 
 RUN /tmp/install_additional.sh
 
-# Generate Jags infomation
-RUN R -e "rjags::jags.version()"
+COPY /inst/rocker_scripts/install_quarto.sh /tmp/
 
-# Generate Python info
-RUN R -e "reticulate::py_config()"
+RUN chmod +x /tmp/install_quarto.sh
 
-# Generate R Platform Info
-RUN R -e "sessioninfo::platform_info()"
+RUN /tmp/install_quarto.sh

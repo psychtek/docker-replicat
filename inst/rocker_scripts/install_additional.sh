@@ -33,6 +33,8 @@ if [ "$ARCH" = "aarch64" ]; then
 fi
 
 echo -e "Installing additional system dependencies...\n"
+
+
 ### Additional base dependencies added here
 apt_install \
     curl \
@@ -107,7 +109,8 @@ install2.r --error --skipinstalled -n "$NCPUS" \
     ggforce \
     ggpubr \
     formattable \
-    R.rsp
+    R.rsp \
+    quarto
 
 
 # Clean up
